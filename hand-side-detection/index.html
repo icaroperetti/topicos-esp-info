@@ -50,12 +50,15 @@
             );
             if (results.multiHandLandmarks) {
               if (results.multiHandedness) {
-                if (results.multiHandedness[0]?.label === "Right") {
+                console.log(results.multiHandedness);
+                if (results.multiHandedness.length === 2) {
+                  console.log("As duas mãos estão levantadas");
+                } else if (results.multiHandedness[0]?.label === "Right") {
                   console.log("Mão esquerda");
                 } else if (results.multiHandedness[0]?.label === "Left") {
                   console.log("Mão direita");
                 } else {
-                  console.log("Sem mão levantada");
+                  console.log("Nenhuma mão levantada");
                 }
               }
               for (const landmarks of results.multiHandLandmarks) {
