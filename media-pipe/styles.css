@@ -1,7 +1,17 @@
 .output_canvas {
   transform: scaleX(-1);
+  position: relative;
+  z-index: -1;
 }
 
 .input_video {
   transform: scaleX(-1);
+}
+
+.data {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  padding: 15px;
+  color: lime;
 }
