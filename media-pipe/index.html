@@ -84,11 +84,11 @@
             let thumb_ip = landmarks[3];
 
             //Utilizar o eixo x para o dedão trouxe resultados mais precisos
-            if (side === "Left") {
+            if (hand_side === "Left") {
               if (thumb_tip.x <= thumb_ip.x) {
                 return true;
               }
-            } else if (side === "Right") {
+            } else if (hand_side === "Right") {
               if (thumb_tip.x >= thumb_ip.x) {
                 return true;
               }
