@@ -69,50 +69,57 @@
           const thumbDown = (hand) => {
             let side = hand[hand.length - 1].label;
 
+            console.log(side);
+
             if (side === "Left") {
               side = "Right";
             } else if (side === "Right") {
               side = "Left";
             }
+
             let thumb_tip = hand[4];
             let thumb_ip = hand[3];
             if (side === "Left") {
-              if (thumb_tip.x <= thumb_ip.x) return true;
+              if (thumb_tip.x <= thumb_ip.x) {
+                return true;
+              }
             } else if (side === "Right") {
-              if (thumb_tip.x >= thumb_ip.x) return true;
+              if (thumb_tip.x >= thumb_ip.x) {
+                return true;
+              }
             }
             return false;
           };
 
           var counter = 0;
           let arr = [];
-
           if (results.multiHandLandmarks) {
             for (let i in results.multiHandLandmarks) {
+              console.log(results.multiHandLandmarks[i]);
+              console.log(results.multiHandedness[i]);
               arr.push(
                 results.multiHandLandmarks[i].concat(results.multiHandedness[i])
               );
             }
 
-            console.log(hand);
-
-            for (let hand of arr) {
-              if (thumbDown(hand)) {
+            for (let lendmarks of arr) {
+              if (thumbDown(lendmarks)) {
                 counter++;
               }
-              if (hand[8].y <= hand[7].y) {
+              if (lendmarks[8].y <= lendmarks[7].y) {
                 counter++;
               }
-              if (hand[12].y <= hand[11].y) {
+              if (lendmarks[12].y <= lendmarks[11].y) {
                 counter++;
               }
-              if (hand[16].y <= hand[15].y) {
+              if (lendmarks[16].y <= lendmarks[15].y) {
                 counter++;
               }
-              if (hand[20].y <= hand[19].y) {
+              if (lendmarks[20].y <= lendmarks[19].y) {
                 counter++;
               }
             }
+            counterElement.innerHTML = `Dedos levantados: ${counter}`;
 
             for (const landmarks of results.multiHandLandmarks) {
               drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
@@ -125,8 +132,6 @@
                 lineWidth: 2,
               });
             }
-            counterElement.innerHTML = `Dedos levantados: ${counter}`;
-            console.log(counter);
           }
           canvasCtx.restore();
         }
