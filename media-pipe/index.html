@@ -97,15 +97,17 @@
           var counter = 0;
           let arr = [];
 
-          // Adicionando os pontos para um array
+          // Concatenar todos os pontos do desenho com a informação do lado da mão
           if (results.multiHandLandmarks) {
             for (let i in results.multiHandLandmarks) {
               arr.push(
                 results.multiHandLandmarks[i].concat(results.multiHandedness[i])
               );
+              console.log(
+                "Results",
+                results.multiHandLandmarks[i].concat(results.multiHandedness[i])
+              );
             }
-
-            console.log("Array", arr[0]);
 
             for (let lendmarks of arr) {
               if (thumbDown(lendmarks)) {
