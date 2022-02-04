@@ -1,0 +1,15 @@
+.input_video,
+.output_canvas {
+  transform: rotateY(180deg);
+}
+div.container > div {
+  position: relative;
+}
+div.container div.rect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 720px;
+  background: rgba(0, 0, 0, 0.5);
+}
