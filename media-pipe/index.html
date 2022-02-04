@@ -68,13 +68,15 @@
 
           const thumbDown = (landmarks) => {
             //Pegar se é direita ou esquerda
-            let side = landmarks[landmarks.length - 1].label;
+            let hand_side = landmarks[landmarks.length - 1].label;
 
-            //Como esta imagem está invertida, precisamos inverter o lado;
-            if (side === "Left") {
-              side = "Right";
-            } else if (side === "Right") {
-              side = "Left";
+            console.log("Len", landmarks[landmarks.length]);
+
+            //Como esta imagem está invertida, precisa inverter o lado
+            if (hand_side === "Left") {
+              hand_side = "Right";
+            } else if (hand_side === "Right") {
+              hand_side = "Left";
             }
 
             //Pontos dos desenhos para serem verificados
@@ -97,7 +99,7 @@
           var counter = 0;
           let arr = [];
 
-          // Concatenar todos os pontos do desenho com a informação do lado da mão
+          // Concatenar todos os pontos dos landmarks com a propriedade que contém o label
           if (results.multiHandLandmarks) {
             for (let i in results.multiHandLandmarks) {
               arr.push(
