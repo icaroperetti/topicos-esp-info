@@ -67,19 +67,21 @@
           }
 
           const thumbDown = (landmarks) => {
+            //Pegar se é direita ou esquerda
             let side = landmarks[landmarks.length - 1].label;
 
-            console.log(landmarks);
-            console.log("Side", side);
-
+            //Como esta imagem está invertida, precisamos inverter o lado;
             if (side === "Left") {
               side = "Right";
             } else if (side === "Right") {
               side = "Left";
             }
 
+            //Pontos dos desenhos para serem verificados
             let thumb_tip = landmarks[4];
             let thumb_ip = landmarks[3];
+
+            //Utilizar o eixo x para o dedão trouxe resultados mais precisos
             if (side === "Left") {
               if (thumb_tip.x <= thumb_ip.x) {
                 return true;
@@ -94,12 +96,16 @@
 
           var counter = 0;
           let arr = [];
+
+          // Adicionando os pontos para um array
           if (results.multiHandLandmarks) {
             for (let i in results.multiHandLandmarks) {
               arr.push(
                 results.multiHandLandmarks[i].concat(results.multiHandedness[i])
               );
             }
+
+            console.log("Array", arr[0]);
 
             for (let lendmarks of arr) {
               if (thumbDown(lendmarks)) {
@@ -121,6 +127,7 @@
             counterElement.innerHTML = `Dedos levantados: ${counter}`;
 
             for (const landmarks of results.multiHandLandmarks) {
+              console.log("Landmarks", landmarks);
               drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
                 color: "#00FF00",
                 lineWidth: 5,
