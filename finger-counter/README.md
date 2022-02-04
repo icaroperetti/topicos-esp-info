@@ -1,4 +1,1 @@
-# Tópicos Especiais em Informática
-
-
-Repositório para armazenar atividades da disciplina de Tópicos Especiais em Informática.
+Código que monstra o lado da mão levantada e também conta os dedos levantados
