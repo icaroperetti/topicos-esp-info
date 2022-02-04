@@ -66,10 +66,11 @@
             }
           }
 
-          const thumbDown = (hand) => {
-            let side = hand[hand.length - 1].label;
+          const thumbDown = (landmarks) => {
+            let side = landmarks[landmarks.length - 1].label;
 
-            console.log(side);
+            console.log(landmarks);
+            console.log("Side", side);
 
             if (side === "Left") {
               side = "Right";
@@ -77,8 +78,8 @@
               side = "Left";
             }
 
-            let thumb_tip = hand[4];
-            let thumb_ip = hand[3];
+            let thumb_tip = landmarks[4];
+            let thumb_ip = landmarks[3];
             if (side === "Left") {
               if (thumb_tip.x <= thumb_ip.x) {
                 return true;
@@ -95,8 +96,6 @@
           let arr = [];
           if (results.multiHandLandmarks) {
             for (let i in results.multiHandLandmarks) {
-              console.log(results.multiHandLandmarks[i]);
-              console.log(results.multiHandedness[i]);
               arr.push(
                 results.multiHandLandmarks[i].concat(results.multiHandedness[i])
               );
