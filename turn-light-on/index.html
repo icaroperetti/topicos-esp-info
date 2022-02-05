@@ -23,20 +23,29 @@
 
   <body>
     <div class="container">
-      <video class="input_video"></video>
       <div>
+        <video class="input_video"></video>
+      </div>
+      <div class="output_video">
+        <div class="images">
+          <img id="3" class="off" src="./img/lamp-3-off.png" />
+          <img id="2" class="off" src="./img/lamp-3-off.png" />
+          <img id="1" class="off" src="./img/lamp-3-off.png" />
+          <img id="0" class="off" src="./img/lamp-3-off.png" />
+        </div>
         <canvas class="output_canvas" width="1280px" height="720px"></canvas>
-        <div class="rect"></div>
       </div>
     </div>
 
     <script type="module">
       const videoElement = document.getElementsByClassName("input_video")[0];
       const canvasElement = document.getElementsByClassName("output_canvas")[0];
+      const lampada = document.getElementById("0");
       const canvasCtx = canvasElement.getContext("2d");
 
+      let isOn = false;
+
       function onResults(results) {
-        //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save
         canvasCtx.save();
         canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
         canvasCtx.drawImage(
@@ -46,29 +55,46 @@
           canvasElement.width,
           canvasElement.height
         );
+
         if (
           results.multiHandLandmarks &&
-          typeof results.multiHandLandmarks[0] != "undefined"
+          results.multiHandLandmarks.length != 0
         ) {
-          console.log(results);
+          for (let hand of results.multiHandLandmarks) {
+            // Define em qual das 4 partes do canvas a ponta do indicador está
+            let point = Math.floor((hand[8].x * canvasElement.width) / 320);
+            console.log(point);
 
-          let point = Math.floor(
-            (results.multiHandLandmarks[0][9].x * canvasElement.width) / 320
-          );
-          console.log(point);
+            //Pegando a ponta do dedo indicador
+            let index_finger = hand[8].y;
 
-          document.querySelector(".rect").style.left =
-            Math.abs(3 - point) * 320 + "px";
-
-          canvasCtx.fillStyle = "rgba(255, 221, 0, 0.5)";
-          canvasCtx.fillRect(point * 320, 0, 320, 720);
-
-          /*for (const landmarks of results.multiHandLandmarks) {
-          drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
-                         {color: '#00FF00', lineWidth: 5});
-          drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2});
-        }*/
+            //Verifica se a ponta do dedo indicador está dentro da área da lampada
+            //E se a variável isOn é falsa
+            if (
+              index_finger * canvasElement.height < lampada.height &&
+              isOn === false
+            ) {
+              //Se a lampada estiver desligada, altera para ligada e troca a imagem
+              if (document.getElementById(point).className == "off") {
+                document.getElementById(point).className = "on";
+                document.getElementById(point).src = "./img/lamp-3-on.png";
+              }
+              //Se não,altera para desligada e troca a imagem
+              else {
+                document.getElementById(point).className = "off";
+                document.getElementById(point).src = "./img/lamp-3-off.png";
+              }
+              isOn = true;
+              //Seta a variabel isOn para true
+            }
+            //Se a ponta do indicador está fora da área da lampada
+            //E seta a variável isOn para falso novamente
+            else if (index_finger * canvasElement.height >= lampada.height) {
+              isOn = false;
+            }
+          }
         }
+
         canvasCtx.restore();
       }
 

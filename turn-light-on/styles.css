@@ -1,15 +1,37 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .input_video,
 .output_canvas {
   transform: rotateY(180deg);
+  border-radius: 10px;
 }
-div.container > div {
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container > div {
+  margin: 20px;
+}
+
+.output_canvas {
   position: relative;
+  z-index: 1;
 }
-div.container div.rect {
+
+.output_video .images {
+  width: 1280px;
+  display: flex;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 320px;
-  height: 720px;
-  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  justify-content: space-around;
+}
+
+.output_video .images img {
+  width: 145px;
 }
