@@ -6,7 +6,7 @@
 
 .input_video,
 .output_canvas {
-  transform: rotateY(180deg);
+  transform: scaleX(-1);
   border-radius: 10px;
 }
 
