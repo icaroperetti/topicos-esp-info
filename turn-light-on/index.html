@@ -61,6 +61,7 @@
           results.multiHandLandmarks.length != 0
         ) {
           for (let hand of results.multiHandLandmarks) {
+            
             // Define em qual das 4 partes do canvas a ponta do indicador está
             let point = Math.floor((hand[8].x * canvasElement.width) / 320);
             console.log(point);
