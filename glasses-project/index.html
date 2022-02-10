@@ -28,9 +28,13 @@
       </div>
       <div class="output_video">
         <div class="images">
+          <div id="0">DIV VAZIA</div>
           <img id="1" class="isWearing" src="./img/sunglasses.png" />
+          <div id="2">DIV VAZIA</div>
           <img id="3" src="./img/sunglasses5.png" />
+          <div id="4">DIV VAZIA</div>
           <img id="5" src="./img/sunglasses3.png" />
+          <div id="6">DIV VAZIA</div>
         </div>
         <canvas class="output_canvas" width="1280px" height="720px"></canvas>
       </div>
@@ -94,12 +98,12 @@
       };
 
       const containsGlasses = [1, 3, 5]; //Contém os ids dos óculos
-      const enteredImageRegion = 1030; //Entrou na região do óculos verifiquei utilizando console.log(index_finger.x * canvasElement.width)
+      const entered = 1030; //Entrou na região do óculos (index_finger.x * canvasElement.width)
       //Verifica se o ponto está dentro dos índices dos óculos
       if (index_finger !== null && point !== null) {
         console.log(index_finger.x * canvasElement.width);
         if (
-          index_finger.x * canvasElement.width > enteredImageRegion &&
+          index_finger.x * canvasElement.width > 1030 &&
           stopSwitch === false &&
           containsGlasses.includes(point)
         ) {
@@ -108,7 +112,7 @@
           console.log("Switched");
 
           //Se o dedo não estiver na posição de um óculos,permite que o switch seja feito
-        } else if (index_finger.x * canvasElement.width < enteredImageRegion) {
+        } else if (index_finger.x * canvasElement.width < 1030) {
           stopSwitch = false;
         }
       }

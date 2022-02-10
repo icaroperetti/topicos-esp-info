@@ -44,9 +44,13 @@
 
 .output_video .images div {
   height: 100px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .output_video .images img.isWearing {
-  background-color: lime;
+  background-color: yellowgreen;
   border-radius: 1px solid tomato;
 }
