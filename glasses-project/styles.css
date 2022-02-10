@@ -35,23 +35,27 @@ p {
 }
 
 .output_video .images {
+  height: 720px;
+  width: 240px;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   position: absolute;
   z-index: 2;
-  justify-content: space-between;
-}
-
-.output_video .images img.isWearing {
-  background-color: tomato;
+  justify-content: space-around;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .output_video .images img {
   height: 100px;
   width: 200px;
-  padding: 12px;
-  display: flex;
-  background: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+
+.output_video .images div {
+  height: 100px;
+}
+
+.output_video .images img.isWearing {
+  background-color: tomato;
 }
