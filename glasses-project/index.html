@@ -64,11 +64,11 @@
       let width = canvasElement.width;
       let height = canvasElement.height;
 
-      let beginX = results.faceLandmarks[162].x * width;
-      let endX = results.faceLandmarks[389].x * width;
+      let beginX = results.faceLandmarks[162].x * canvasElement.width;
+      let endX = results.faceLandmarks[389].x * canvasElement.width;
 
       let beginY = results.faceLandmarks[10].y * height;
-      let endY = results.faceLandmarks[0].y * height;
+      let endY = results.faceLandmarks[4].y * height;
 
       if (results.rightHandLandmarks) {
         index_finger = results.rightHandLandmarks[8];
@@ -101,10 +101,7 @@
           switchGlasses(point);
           stopSwitch = true;
           console.log("Switched");
-        } else if (
-          index_finger.x * canvasElement.width < 1030 &&
-          stopSwitch === true
-        ) {
+        } else if (index_finger.x * canvasElement.width < 1030) {
           stopSwitch = false;
         }
       }
