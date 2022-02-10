@@ -33,13 +33,13 @@
   position: absolute;
   z-index: 2;
   justify-content: space-around;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .output_video .images img {
   height: 100px;
   width: 150px;
-  padding: 10px;
+  padding: 12px;
+  background-color: bisque;
 }
 
 .output_video .images div {
@@ -47,5 +47,6 @@
 }
 
 .output_video .images img.isWearing {
-  background-color: tomato;
+  background-color: lime;
+  border-radius: 1px solid tomato;
 }
