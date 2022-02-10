@@ -4,15 +4,7 @@
   padding: 0;
 }
 
-p {
-  font-size: 1.5rem;
-  line-height: 1.5;
-  margin: 0;
-  font-weight: bold;
-  color: #fff;
-  padding-top: 50px;
-  text-align: center;
-}
+
 
 .input_video,
 .output_canvas {
