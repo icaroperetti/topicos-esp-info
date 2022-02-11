@@ -28,13 +28,12 @@
       </div>
       <div class="output_video">
         <div class="images">
-          <div id="0">DIV VAZIA</div>
+          <div id="0"></div>
           <img id="1" class="isWearing" src="./img/sunglasses.png" />
-          <div id="2">DIV VAZIA</div>
+          <div id="2"></div>
           <img id="3" src="./img/sunglasses5.png" />
-          <div id="4">DIV VAZIA</div>
+          <div id="4"></div>
           <img id="5" src="./img/sunglasses3.png" />
-          <div id="6">DIV VAZIA</div>
         </div>
         <canvas class="output_canvas" width="1280px" height="720px"></canvas>
       </div>
@@ -74,17 +73,18 @@
       let beginY = results.faceLandmarks[10].y * height;
       let endY = results.faceLandmarks[2].y * height;
 
-      //O canvas foi dividio em 7 porém utilizei apenas 3 imagens
+      //O canvas foi dividio em 6 porém apenas 3 imagens utilizadas
       if (results.rightHandLandmarks) {
         index_finger = results.rightHandLandmarks[8];
-        point = Math.floor((index_finger.y * canvasElement.height) / 102.8);
+        point = Math.floor((index_finger.y * canvasElement.height) / 120);
       } else if (results.leftHandLandmarks) {
         index_finger = results.leftHandLandmarks[8];
-        point = Math.floor((index_finger.y * canvasElement.height) / 102.8);
+        point = Math.floor((index_finger.y * canvasElement.height) / 120);
       }
 
-      //Recebe o id do óculos e remove a classe isWearing e caso a imagem esteja sendo trocada
-      //Adiciona a classe isWearing na mesma
+      //Recebe o id da imagem que deve ser mostrada e remove o isWearing caso exista uma imagem anterior
+      //Se houver uma imagem anterior, remove a imagem anterior e adiciona a classe isWearing na nova imagem
+      //Se não apenas remove a imagem
       const switchGlasses = (point) => {
         if (document.getElementById(point).className !== "isWearing") {
           if (document.querySelector(".isWearing") !== null) {
