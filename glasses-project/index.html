@@ -33,7 +33,7 @@
           <div id="2"></div>
           <img id="3" src="./img/sunglasses5.png" />
           <div id="4"></div>
-          <img id="5" src="./img/sunglasses3.png" />
+          <img id="5" src="./img/sunglasses2.png" />
         </div>
         <canvas class="output_canvas" width="1280px" height="720px"></canvas>
       </div>
@@ -45,6 +45,7 @@
   const videoElement = document.getElementsByClassName("input_video")[0];
   const canvasElement = document.getElementsByClassName("output_canvas")[0];
   const canvasCtx = canvasElement.getContext("2d");
+  const turn_down_for_what = document.getElementsByClassName("turndownforwhat");
 
   let index_finger = null;
   let point = null;
@@ -91,7 +92,6 @@
             document.querySelector(".isWearing").classList.remove("isWearing");
           }
           document.getElementById(point).classList.add("isWearing");
-          console.log("Added sunglasses");
         } else {
           document.querySelector(".isWearing").classList.remove("isWearing");
         }
@@ -99,9 +99,10 @@
 
       const containsGlasses = [1, 3, 5]; //Contém os ids dos óculos
       const entered = 1030; //Entrou na região do óculos (index_finger.x * canvasElement.width)
+
       //Verifica se o ponto está dentro dos índices dos óculos
       if (index_finger !== null && point !== null) {
-        console.log(index_finger.x * canvasElement.width);
+        console.log("entered", index_finger.x * canvasElement.width);
         if (
           index_finger.x * canvasElement.width > 1030 &&
           stopSwitch === false &&
@@ -119,6 +120,7 @@
 
       //Pega qual é o óculos que está sendo usado e desenha
       let isWearing = document.querySelector(".isWearing");
+
       if (isWearing) {
         canvasCtx.drawImage(
           isWearing,
