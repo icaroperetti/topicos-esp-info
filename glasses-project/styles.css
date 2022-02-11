@@ -27,12 +27,12 @@
 .output_video .images {
   height: 720px;
   width: 240px;
+  z-index: 2;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   position: absolute;
-  z-index: 2;
-  justify-content: space-around;
 }
 
 .output_video .images img {
